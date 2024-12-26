@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page - Lomba Olahraga</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+        }
+
+        .header {
+            background-color: #007bff; /* Dark blue */
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .navbar {
+            background-color: #007bff; /* Dark blue */
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important; /* Set color to white */
+        }
+
+        .navbar-nav .nav-link.active {
+            background-color: #0056b3; /* Darker blue for active link */
+            border-radius: 5px;
+        }
+
+        .btn-signup {
+            background-color: #ffc107; /* Yellow */
+            color: #ffffff;
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 5px;
+        }
+
+        .btn-signup:hover {
+            background-color: #e0a800;
+            color: #fff;
+        }
+
+        .profile-menu {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            display: none;
+            background-color: white;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .profile-menu a {
+            display: block;
+            padding: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .profile-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .profile-icon {
+            cursor: pointer;
+            width: 40px; /* Ukuran foto profil */
+            height: 40px; /* Ukuran foto profil */
+            border-radius: 50%; /* Membuat foto profil lingkaran */
+            margin-right: 10px; /* Memberi jarak antara foto dan ikon */
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+
+        .sport-box {
+            background-color: white; /* White background for sport box */
+            padding: 20px;
+            border: 2px solid #007bff; /* Blue border */
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.2s;
+            height: 300px; /* Set fixed height */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+
+        .sport-box:hover {
+            transform: scale(1.05);
+        }
+
+        .sport-box img {
+            width: 100px; /* Fixed width */
+            height: 100px; /* Fixed height */
+            margin-bottom: 15px;
+            border-radius: 50%;
+            border: 4px solid #007bff;
+        }
+
+        .footer {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .features {
+            background-color: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .features h2 {
+            margin-bottom: 20px;
+        }
+
+        .features .feature-item {
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.2s;
+        }
+
+        .features .feature-item:hover {
+            transform: scale(1.05);
+            background-color: #cfe2f3; /* Lighten on hover */
+        }
+
+        .features i {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .promotion-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.5rem; /* Ukuran font diperbesar */
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tentang_lomba.html">Tentang Lomba</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <img src="gambar/12345.png" alt="Profile" class="profile-icon">
+                        <a class="nav-link" href="" id="profileToggle">
+                            <i class="bi bi-list"></i> <!-- Ganti dengan ikon garis tiga -->
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Menu -->
+    <div class="profile-menu" id="profileMenu">
+        <a href="profile.html">Biodata</a>
+        <a href="partisipasi.html">Partisipasi</a>
+        <a href="logout.php">Logout</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Selamat Datang di Lomba Olahraga Kecamatan</h1>
+        <p>Bergabunglah dalam kompetisi olahraga kecamatan dan buktikan kemampuanmu!</p>
+        <a href="form_lomba.php" class="btn btn-primary btn-lg btn-signup mt-3">Daftar Sekarang</a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container content">
+        <div class="row">
+            <!-- Gambar Promosi -->
+            <div class="col-12 mb-4">
+                <h2 class="promotion-text">Jadilah bagian dari event olahraga terbesar di kecamatan kami!</h2>
+            </div>
+        </div>
+
+        <!-- Cabang Olahraga -->
+        <div class="row">
+            <aside class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="sport-box">
+                            <img src="gambar/bola.jpg" alt="Sepak Bola">
+                            <h4>Sepak Bola</h4>
+                            <p>Olahraga tim yang dimainkan dengan menggunakan bola, di mana tujuan utamanya adalah mencetak gol ke gawang lawan.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="sport-box">
+                            <img src="gambar/basket.jpg" alt="Basket">
+                            <h4>Basket</h4>
+                            <p>Permainan yang dimainkan oleh dua tim dengan tujuan mencetak poin dengan memasukkan bola ke ring lawan.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="sport-box">
+                            <img src="gambar/voli.jpg" alt="Voli">
+                            <h4>Voli</h4>
+                            <p>Olahraga tim yang dimainkan dengan memukul bola melewati net, dengan tujuan agar bola jatuh di area lawan.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="sport-box">
+                            <img src="gambar/bulutangkis.jpeg" alt="Badminton">
+                            <h4>Badminton</h4>
+                            <p>Olahraga raket yang dimainkan secara individu atau beregu, bertujuan untuk memukul shuttlecock ke area lawan.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="sport-box">
+                            <img src="gambar/catur.jpg" alt="Catur">
+                            <h4>Catur</h4>
+                            <p>Permainan papan yang melibatkan strategi, di mana dua pemain berusaha mengalahkan raja lawan.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="sport-box">
+                            <img src="gambar/tenismeja.jpg" alt="Tenis Meja">
+                            <h4>Tenis Meja</h4>
+                            <p>Olahraga raket yang dimainkan di meja, tujuan utamanya adalah mengembalikan bola agar tidak jatuh di sisi sendiri.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="sport-box">
+                            <img src="gambar/futsal.jpg" alt="Futsal">
+                            <h4>Futsal</h4>
+                            <p>Varian sepak bola yang dimainkan di lapangan kecil dengan tim yang lebih sedikit dan bola yang lebih kecil.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="sport-box">
+                            <img src="gambar/renang.jpg" alt="Renang">
+                            <h4>Renang</h4>
+                            <p>Olahraga air yang melibatkan pergerakan tubuh di dalam air, dengan berbagai gaya renang yang berbeda.</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Deskripsi Singkat Lomba -->
+        <div class="card p-4 mb-4" id="about">
+            <h2 class="card-title">Deskripsi Singkat Lomba</h2>
+            <p class="card-text">Lomba ini terbuka untuk semua kalangan dari berbagai desa di kecamatan Blang Bintang. Pilihlah cabang olahraga yang kamu minati dan tunjukkan bakatmu di ajang olahraga ini!</p>
+            <ul>
+                <li><strong>Jadwal acara:</strong> 10 Desember 2025</li>
+                <li><strong>Lokasi:</strong> Stadion Harapan Bangsa</li>
+            </ul>
+        </div>
+
+        <!-- New Features Section -->
+        <div class="features mt-5">
+            <h2 class="text-center">Fitur Menarik</h2>
+            <div class="row">
+                <div class="col-md-4 feature-item">
+                    <h3><i class="bi bi-check-circle"></i> Registrasi Mudah</h3>
+                    <p>Daftar dengan cepat dan mudah untuk mengikuti lomba.</p>
+                </div>
+                <div class="col-md-4 feature-item">
+                    <h3><i class="bi bi-people-fill"></i> Komunitas Olahraga</h3>
+                    <p>Bergabung dengan komunitas atlet dan penggemar olahraga.</p>
+                </div>
+                <div class="col-md-4 feature-item">
+                    <h3><i class="bi bi-trophy-fill"></i> Hadiah Menarik</h3>
+                    <p>Dapatkan hadiah dan penghargaan menarik untuk pemenang.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; BY MAULINATUL HAKIKI</p>
+    </footer>
+
+    <!-- Bootstrap JS and Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+    <script>
+        const profileToggle = document.getElementById('profileToggle');
+        const profileMenu = document.getElementById('profileMenu');
+
+        profileToggle.addEventListener('click', function (event) {
+            event.preventDefault(); // Mencegah link default
+            profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Menutup menu jika klik di luar
+        window.addEventListener('click', function (event) {
+            if (!profileToggle.contains(event.target) && !profileMenu.contains(event.target)) {
+                profileMenu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

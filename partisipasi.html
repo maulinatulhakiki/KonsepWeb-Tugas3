@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Partisipasi Lomba</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Full height for body */
+        }
+
+        .container {
+            margin-top: 20px;
+            flex: 1; /* Allow the container to grow */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .footer {
+            background-color: #007bff; /* Blue footer */
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            margin-top: auto; /* Push footer to the bottom */
+        }
+
+        .profile-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #007bff;">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="dashboard.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tentang_lomba.html">Tentang Lomba</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="gambar/12345.png" alt="Profile" class="profile-icon"> 
+                            <i class="bi bi-list"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="profile.html">Profil</a></li>
+                            <li><a class="dropdown-item" href="">Partisipasi</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>Daftar Lomba yang Diikuti</h1>
+            <p>Berikut adalah daftar lomba yang Anda ikuti:</p>
+        </div>
+
+        <div class="mb-3">
+            <input type="text" id="search" class="form-control" placeholder="Cari lomba..." oninput="filterTable()">
+        </div>
+
+        <div class="mb-3">
+            <label for="dataCount" class="form-label">Tampilkan jumlah data:</label>
+            <select class="form-select" id="dataCount" onchange="updateTable()">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="all">Semua</option>
+            </select>
+        </div>
+
+        <table class="table table-bordered" id="participationTable">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Lomba</th>
+                    <th>Cabang Olahraga</th>
+                    <th>Tanggal Lomba</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data akan diisi di sini -->
+            </tbody>
+        </table>
+
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah Lomba</button>
+    </div>
+
+    <!-- Modal Tambah Lomba -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Tambah Lomba</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nama Lomba</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sport" class="form-label">Cabang Olahraga</label>
+                        <input type="text" class="form-control" id="sport">
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Tanggal Lomba</label>
+                        <input type="date" class="form-control" id="date">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="addParticipation()">Tambah</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; BY MAULINATUL HAKIKI</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let participations = []; // Array untuk menyimpan data lomba
+        let visibleCount = 5; // Jumlah data yang ditampilkan
+
+        function addParticipation() {
+            const name = document.getElementById('name').value;
+            const sport = document.getElementById('sport').value;
+            const date = document.getElementById('date').value;
+
+            if (name && sport && date) {
+                participations.push({ name, sport, date });
+                document.getElementById('addModal').querySelector('.btn-close').click(); // Tutup modal
+                updateTable(); // Update tabel
+            } else {
+                alert("Semua field harus diisi!");
+            }
+        }
+
+        function updateTable() {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+
+            const filteredParticipations = participations.slice(0, visibleCount); // Batasi jumlah data
+
+            filteredParticipations.forEach((participation, index) => {
+                const row = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${participation.name}</td>
+                        <td>${participation.sport}</td>
+                        <td>${participation.date}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" onclick="editParticipation(${index})">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteParticipation(${index})">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function deleteParticipation(index) {
+            participations.splice(index, 1);
+            updateTable(); // Update tabel setelah penghapusan
+        }
+
+        function editParticipation(index) {
+            const participation = participations[index];
+            document.getElementById('name').value = participation.name;
+            document.getElementById('sport').value = participation.sport;
+            document.getElementById('date').value = participation.date;
+
+            // Ganti tombol tambah menjadi update
+            const modalFooter = document.querySelector('#addModal .modal-footer');
+            modalFooter.innerHTML = `
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary" onclick="updateParticipation(${index})">Update</button>
+            `;
+
+            // Tampilkan modal
+            const modal = new bootstrap.Modal(document.getElementById('addModal'));
+            modal.show();
+        }
+
+        function updateParticipation(index) {
+            const name = document.getElementById('name').value;
+            const sport = document.getElementById('sport').value;
+            const date = document.getElementById('date').value;
+
+            if (name && sport && date) {
+                participations[index] = { name, sport, date };
+                document.getElementById('addModal').querySelector('.btn-close').click(); // Tutup modal
+                updateTable(); // Update tabel
+            } else {
+                alert("Semua field harus diisi!");
+            }
+        }
+
+        function filterTable() {
+            const searchValue = document.getElementById('search').value.toLowerCase();
+            const filteredParticipations = participations.filter(participation =>
+                participation.name.toLowerCase().includes(searchValue) ||
+                participation.sport.toLowerCase().includes(searchValue)
+            );
+
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+
+            filteredParticipations.forEach((participation, index) => {
+                const row = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${participation.name}</td>
+                        <td>${participation.sport}</td>
+                        <td>${participation.date}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" onclick="editParticipation(${index})">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteParticipation(${index})">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Update jumlah data yang ditampilkan
+        document.getElementById('dataCount').addEventListener('change', function() {
+            visibleCount = parseInt(this.value);
+            updateTable();
+        });
+
+        // Inisialisasi tabel saat halaman dimuat
+        updateTable();
+    </script>
+</body>
+
+</html>

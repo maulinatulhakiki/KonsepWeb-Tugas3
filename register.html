@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" media="screen" title="no title">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <title>Register Page</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .input {
+            width: 300px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 100px auto;
+            text-align: center;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .box-input {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .box-input i {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            color: #007bff;
+        }
+        .box-input input {
+            width: 100%;
+            padding: 10px 40px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        .box-input input:focus {
+            border-color: #0056b3;
+        }
+        .btn-input {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .btn-input:hover {
+            background-color: #0056b3;
+        }
+        .bottom p {
+            margin-top: 20px;
+            color: #333;
+        }
+        .bottom a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .bottom a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input">
+        <h1>REGISTER</h1>
+        <form action="register_process.php" method="POST">
+            <div class="box-input">
+                <i class="fas fa-user"></i>
+                <input type="text" name="fullname" placeholder="Full Name" required>
+            </div>
+            <div class="box-input">
+                <i class="fas fa-user"></i>
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="box-input">
+                <i class="fas fa-envelope-open-text"></i>
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="box-input">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" name="register" class="btn-input">Register</button>
+            <div class="bottom">
+                <p>Sudah punya akun? <a href="login.html">Login disini</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

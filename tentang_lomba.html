@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Lomba - Lomba Olahraga</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Full height for body */
+        }
+
+        .header {
+            background-color: #007bff; /* Dark blue */
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .navbar {
+            background-color: #007bff; /* Dark blue */
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important; /* Set color to white */
+        }
+
+        .navbar-nav .nav-link.active {
+            background-color: #0056b3; /* Darker blue for active link */
+            border-radius: 5px;
+        }
+
+        .content {
+            margin-top: 20px;
+            flex: 1; /* Allow content to grow */
+        }
+
+        .footer {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .profile-menu {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            display: none;
+            background-color: white;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .profile-menu a {
+            display: block;
+            padding: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .profile-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .profile-icon {
+            cursor: pointer;
+            width: 40px; /* Size of profile picture */
+            height: 40px; /* Size of profile picture */
+            border-radius: 50%; /* Circle profile picture */
+            margin-left: 10px; /* Space between profile icon and menu */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active">Tentang Lomba</a> <!-- Active link -->
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <img src="gambar/12345.png" alt="Profile" class="profile-icon" id="profileToggle">
+                        <a class="nav-link" href="#" id="menuToggle">
+                            <i class="bi bi-list"></i> <!-- Icon for menu -->
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Menu -->
+    <div class="profile-menu" id="profileMenu">
+        <a href="profile.html">Biodata</a>
+        <a href="partisipasi.html">Partisipasi</a>
+        <a href="logout.php">Logout</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Tentang Lomba</h1>
+        <p>Informasi mengenai sejarah, tujuan, dan tim penyelenggara lomba.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container content">
+        <!-- Sejarah Lomba -->
+        <section id="history">
+            <h2>Sejarah Lomba</h2>
+            <p>Lomba ini pertama kali diselenggarakan pada tahun 2000 dengan tujuan untuk meningkatkan semangat
+                olahraga di masyarakat. Seiring berjalannya waktu, lomba ini semakin berkembang dan melibatkan
+                berbagai cabang olahraga.</p>
+        </section>
+
+        <!-- Tujuan dan Visi -->
+        <section id="vision">
+            <h2>Tujuan dan Visi</h2>
+            <p>Tujuan dari lomba ini adalah untuk mempromosikan gaya hidup sehat dan membangun kekompakan antar
+                warga desa. Visi kami adalah menciptakan ajang kompetisi yang fair dan menyenangkan bagi semua
+                peserta.</p>
+        </section>
+
+        <!-- Tim Penyelenggara -->
+        <section id="organizers">
+            <h2>Tim Penyelenggara</h2>
+            <p>Tim penyelenggara terdiri dari berbagai elemen masyarakat, termasuk komunitas olahraga, pemuda, dan
+                pemerintah desa. Kami bekerja sama untuk memastikan acara ini berjalan lancar dan sukses.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; BY MAULINATUL HAKIKI</p>
+    </footer>
+
+    <!-- Bootstrap JS and Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const profileMenu = document.getElementById('profileMenu');
+
+        menuToggle.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Close menu if click outside
+        window.addEventListener('click', function (event) {
+            if (!menuToggle.contains(event.target) && !profileMenu.contains(event.target) && !document.getElementById('profileToggle').contains(event.target)) {
+                profileMenu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

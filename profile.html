@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Profil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Full height for body */
+        }
+
+        .profile-container {
+            margin: 20px;
+            flex: 1; /* Allow the container to grow */
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .footer {
+            background-color: #007bff; /* Blue footer */
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #007bff;">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tentang_lomba.html">Tentang Lomba</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-list"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="">Profil</a></li>
+                            <li><a class="dropdown-item" href="partisipasi.html">Partisipasi</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container profile-container">
+        <div class="profile-header">
+            <h1>Profil Pengguna</h1>
+            <img id="profileImage" src="gambar/12345.png" alt="Profile" class="profile-icon">
+        </div>
+
+        <div class="mb-3">
+            <label for="fileInput" class="form-label">Ganti Foto Profil</label>
+            <input type="file" class="form-control" id="fileInput" accept="image/*" onchange="previewImage(event)">
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Nama Pengguna</label>
+            <input type="text" class="form-control" id="username" value="Maulinatul Hakiki" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" value="maulinatul@example.com" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Nomor Telepon</label>
+            <input type="text" class="form-control" id="phone" value="0812-3456-7890" readonly>
+        </div>
+
+        <div class="mb-3">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profil</button>
+        </div>
+    </div>
+
+    <!-- Modal Edit Profil -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="editUsername" class="form-label">Nama Pengguna</label>
+                        <input type="text" class="form-control" id="editUsername" value="Maulinatul Hakiki">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="editEmail" value="maulinatul@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPhone" class="form-label">Nomor Telepon</label>
+                        <input type="text" class="form-control" id="editPhone" value="0812-3456-7890">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="saveProfile()">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; BY MAULINATUL HAKIKI</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function (e) {
+                const profileImage = document.getElementById('profileImage');
+                profileImage.src = e.target.result; // Update image source
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function saveProfile() {
+            // Ambil nilai dari input dan lakukan penyimpanan data sesuai kebutuhan
+            const username = document.getElementById('editUsername').value;
+            const email = document.getElementById('editEmail').value;
+            const phone = document.getElementById('editPhone').value;
+
+            // Anda dapat menyimpan data ini ke server atau melakukan tindakan lain sesuai kebutuhan
+            console.log("Profil disimpan:", { username, email, phone });
+
+            // Tutup modal
+            document.getElementById('editProfileModal').querySelector('.btn-close').click();
+        }
+    </script>
+</body>
+
+</html>
